@@ -23,8 +23,11 @@ export async function handleTextRequest(req: Request): Promise<Response> {
     const aiResponse = await processTextWithAI(text);
     return new CustomResponse({ quiz: aiResponse }, { status: 200 });
   } catch (error) {
+    console.error("Error in handleTextRequest:", error);
     return new CustomResponse(
-      { message: "Failed to generate quiz using AI" },
+      {
+        message: (error as Error).message || "Failed to generate quiz using AI",
+      },
       { status: 500 }
     );
   }
@@ -51,8 +54,11 @@ export async function handleUrlRequest(req: Request): Promise<Response> {
     const aiResponse = await processTextWithAI(scrapedText);
     return new CustomResponse({ quiz: aiResponse }, { status: 200 });
   } catch (error) {
+    console.error("Error in handleUrlRequest:", error);
     return new CustomResponse(
-      { message: "Failed to generate quiz using AI" },
+      {
+        message: (error as Error).message || "Failed to generate quiz using AI",
+      },
       { status: 500 }
     );
   }

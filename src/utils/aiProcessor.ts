@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { MAX_TOKENS } from "../config";
 
 const openai = new OpenAI({
   apiKey: process.env.QUIZGENIE_OPENAI_API_KEY,
@@ -18,6 +19,8 @@ export default async function processTextWithAI(
   text: string
 ): Promise<QuizResponse> {
   try {
+    const truncatedText = text.split(" ").slice(0, MAX_TOKENS).join(" ");
+
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       response_format: { type: "json_object" },
@@ -29,7 +32,7 @@ export default async function processTextWithAI(
         },
         {
           role: "user",
-          content: `Generate a quiz based on the following information: ${text}`,
+          content: `Generate a quiz based on the following information: ${truncatedText}`,
         },
       ],
     });
@@ -40,9 +43,11 @@ export default async function processTextWithAI(
         const quiz: QuizResponse = JSON.parse(messageContent);
         return quiz;
       } else {
+        console.error("No valid response content from AI");
         throw new Error("No valid response content from AI");
       }
     } else {
+      console.error("No response from AI");
       throw new Error("No response from AI");
     }
   } catch (error) {

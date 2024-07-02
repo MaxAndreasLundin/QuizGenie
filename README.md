@@ -23,21 +23,22 @@ This endpoint accepts a JSON object containing text data. It generates a quiz ba
   ```
 
 - **Response:**
-  ```json {
-  "quiz": {
-   "title": "Quiz Title",
-   "questions": [
-     {
-       "question": "Question 1?",
-       "answer": "Answer 1"
-     },
-     {
-       "question": "Question 2?",
-       "answer": "Answer 2"
-     }
-     // More questions...
-   ]
-  }
+  ```json
+  {
+    "quiz": {
+      "title": "Quiz Title",
+      "questions": [
+        {
+          "question": "Question 1?",
+          "answer": "Answer 1"
+        },
+        {
+          "question": "Question 2?",
+          "answer": "Answer 2"
+        }
+        // More questions...
+      ]
+    }
   }
   ```
 
@@ -58,23 +59,23 @@ This endpoint accepts a JSON object containing a URL. It scrapes text content fr
 
 - **Response:**
 
-  ```json {
-  "quiz": {
-    "title": "Quiz Title",
-    "questions": [
-      {
-        "question": "Question 1?",
-        "answer": "Answer 1"
-      },
-      {
-        "question": "Question 2?",
-        "answer": "Answer 2"
-      }
-      // More questions...
-    ]
+  ```json
+  {
+    "quiz": {
+      "title": "Quiz Title",
+      "questions": [
+        {
+          "question": "Question 1?",
+          "answer": "Answer 1"
+        },
+        {
+          "question": "Question 2?",
+          "answer": "Answer 2"
+        }
+        // More questions...
+      ]
+    }
   }
-  }
-
   ```
 
 ## 3. Setup

@@ -1,0 +1,12 @@
+services:
+  quizgenie:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - QUIZGENIE_OPENAI_API_KEY=${QUIZGENIE_OPENAI_API_KEY}
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules

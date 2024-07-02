@@ -77,28 +77,13 @@ This endpoint accepts a JSON object containing a URL. It scrapes text content fr
 
   ```
 
-## 3. Setup and Usage
+## 3. Setup
 
 ### Clone the Repository
 
 ```sh
 git clone https://github.com/MaxAndreasLundin/QuizGenie
 cd quizgenie
-```
-
-### Install Dependencies
-
-You can use either Bun or npm to install dependencies.
-Using Bun
-
-```sh
-bun install
-```
-
-Using npm
-
-```sh
-npm install
 ```
 
 ### Create a .env File
@@ -109,16 +94,37 @@ Create a .env file in the root directory with the following content:
 QUIZGENIE_OPENAI_API_KEY=your_openai_api_key
 ```
 
-### Start the Server
+## 4. Usage
 
-IMPORTANT! You can only use Bun to start the server.
-Installation instructions: https://bun.sh/docs/installation
+### Run with docker
+
+Installation instructions for Docker: https://docs.docker.com/compose/install/
+
+```sh
+docker compose build
+```
+
+```sh
+docker compose up
+```
+
+### Run with Bun
+
+Installation instructions for Bun: https://bun.sh/docs/installation
+
+Install dependencies.
+
+```sh
+bun install
+```
+
+To start the server.
 
 ```sh
 bun start
 ```
 
-### Send Requests
+## 5. Send Requests
 
 Use a tool like curl, Postman, or any HTTP client to send POST requests to the endpoints.
 

@@ -152,5 +152,5 @@ curl -X POST http://localhost:3000/url \
 
 ### Notes
 
-    Ensure the text provided is substantial enough for quiz generation.
-    For the /url endpoint, the scraper targets common content elements to work across various websites.
+Ensure the text provided is substantial enough for quiz generation.
+For the /url endpoint, the scraper targets common content elements to work across various websites.

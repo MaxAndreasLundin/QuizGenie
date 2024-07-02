@@ -41,7 +41,7 @@ This endpoint accepts a JSON object containing text data. It generates a quiz ba
   }
   ```
 
-### 1. POST /url
+### 2. POST /url
 
 This endpoint accepts a JSON object containing a URL. It scrapes text content from the provided URL and generates a quiz based on the scraped text.
 
@@ -77,12 +77,12 @@ This endpoint accepts a JSON object containing a URL. It scrapes text content fr
 
   ```
 
-## Setup and Usage
+## 3. Setup and Usage
 
 ### Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/quizgenie.git
+git clone https://github.com/MaxAndreasLundin/QuizGenie
 cd quizgenie
 ```
 
@@ -111,16 +111,11 @@ QUIZGENIE_OPENAI_API_KEY=your_openai_api_key
 
 ### Start the Server
 
-Using Bun
+IMPORTANT! You can only use Bun to start the server.
+Installation instructions: https://bun.sh/docs/installation
 
 ```sh
 bun start
-```
-
-Using npm
-
-```sh
-npm start
 ```
 
 ### Send Requests

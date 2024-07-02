@@ -1,6 +1,8 @@
-import { handleTextRequest } from "./controllers/aiController";
+import {
+  handleTextRequest,
+  handleUrlRequest,
+} from "./controllers/aiController";
 import { errorHandler } from "./middlewares/errorHandler";
-import CustomResponse from "./utils/customResponse";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -14,14 +16,16 @@ const server = Bun.serve({
 
       if (method === "POST" && url.pathname === "/text") {
         return handleTextRequest(req);
+      } else if (method === "POST" && url.pathname === "/url") {
+        return handleUrlRequest(req);
       }
 
-      return new CustomResponse(
-        { message: "Endpoint not found" },
-        { status: 404 }
-      );
-    } catch (err) {
-      return errorHandler(err as Error);
+      return new Response(JSON.stringify({ message: "Endpoint not found" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (err: any) {
+      return errorHandler(err);
     }
   },
 });

@@ -28,7 +28,7 @@ export default async function processTextWithAI(
         {
           role: "system",
           content:
-            "You are a helpful assistant designed to generate quizzes based on the provided information. Format the response as a JSON object with a title and a list of questions, each with a question and an answer.",
+            "You are a helpful assistant designed to generate quizzes based on the provided information. Answer in the same language as the text you were provided with. Format the response as a JSON object with a title and a list of questions, each with a question and an answer.",
         },
         {
           role: "user",

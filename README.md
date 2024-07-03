@@ -78,6 +78,22 @@ This endpoint accepts a JSON object containing a URL. It scrapes text content fr
   }
   ```
 
+### TypeScript Interfaces
+
+For TypeScript users, here are the interfaces for the response data:
+
+```TS
+interface QuizQuestion {
+  question: string;
+  answer: string;
+}
+
+interface QuizResponse {
+  title: string;
+  questions: QuizQuestion[];
+}
+```
+
 ## 3. Setup
 
 ### Clone the Repository

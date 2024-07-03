@@ -6,24 +6,23 @@ export async function scrapeWebpage(url: string): Promise<string> {
     const data = await response.text();
     const $ = load(data);
 
-    // Extract text content from relevant HTML tags
     const contentSelectors = [
-      "article", // Many blogs and news sites
-      "main", // Main content area
-      "section", // Sections of content
-      "div.content", // Generic content container
-      "div.post", // Blog posts
-      "div.entry", // Entries in blogs or forums
-      "div.text", // Generic text container
-      "div.main", // Main content area
-      "body", // Fallback
+      "article",
+      "main",
+      "section",
+      "div.content",
+      "div.post",
+      "div.entry",
+      "div.text",
+      "div.main",
+      "body",
     ];
 
     let textContent = "";
     for (const selector of contentSelectors) {
       if ($(selector).length) {
         textContent = $(selector).text();
-        if (textContent.trim()) break; // If we found meaningful text, stop
+        if (textContent.trim()) break;
       }
     }
 
@@ -31,7 +30,6 @@ export async function scrapeWebpage(url: string): Promise<string> {
       throw new Error("Failed to extract meaningful content");
     }
 
-    // Optionally, you can filter out non-meaningful text based on your needs
     const cleanedText = textContent.replace(/\s+/g, " ").trim();
 
     return cleanedText;

@@ -1,9 +1,9 @@
-import axios from "axios";
 import { load } from "cheerio";
 
 export async function scrapeWebpage(url: string): Promise<string> {
   try {
-    const { data } = await axios.get(url);
+    const response = await fetch(url);
+    const data = await response.text();
     const $ = load(data);
 
     // Extract text content from relevant HTML tags

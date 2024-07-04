@@ -1,25 +1,42 @@
 import {
-  handleTextRequest,
-  handleUrlRequest,
+  generateQuizFromText,
+  generateQuizFromUrl,
 } from "../controllers/aiController";
 import { errorHandler } from "../middlewares/errorHandler";
 
-export async function fetchHandler(req: Request): Promise<Response> {
+type Route = {
+  method: string;
+  path: string;
+  handler: (req: Request) => Promise<Response>;
+};
+
+const routes: Route[] = [
+  { method: "POST", path: "/text", handler: generateQuizFromText },
+  { method: "POST", path: "/url", handler: generateQuizFromUrl },
+];
+
+function createNotFoundResponse(): Response {
+  return new Response(JSON.stringify({ message: "Endpoint not found" }), {
+    status: 404,
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+export async function apiRequestHandler(req: Request): Promise<Response> {
   try {
     const url = new URL(req.url);
     const method = req.method;
 
-    if (method === "POST" && url.pathname === "/text") {
-      return handleTextRequest(req);
-    } else if (method === "POST" && url.pathname === "/url") {
-      return handleUrlRequest(req);
+    const route = routes.find(
+      (r) => r.method === method && r.path === url.pathname
+    );
+
+    if (route) {
+      return route.handler(req);
     }
 
-    return new Response(JSON.stringify({ message: "Endpoint not found" }), {
-      status: 404,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (err: any) {
-    return errorHandler(err);
+    return createNotFoundResponse();
+  } catch (err) {
+    return errorHandler(err as Error);
   }
 }

@@ -1,8 +1,8 @@
-import CustomResponse from "../utils/customResponse";
+import { JsonResponse } from "../utils/customResponse";
 
 export function errorHandler(err: Error) {
   console.error(err);
-  return new CustomResponse(
+  return new JsonResponse(
     { message: "Internal Server Error" },
     { status: 500 }
   );

@@ -6,8 +6,8 @@ COPY package.json bun.lockb ./
 
 RUN bun install
 
-COPY . .
+COPY src ./src
 
 EXPOSE 3000
 
-CMD ["bun", "--hot", "run", "src/index.ts"]
+CMD ["bun", "run", "src/index.ts"]
